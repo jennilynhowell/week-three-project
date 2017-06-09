@@ -83,6 +83,7 @@
   calNode.setAttribute('class', 'calculator');
   siteBody.appendChild(calNode);
 
+  //===================Here are our divs:
   for (var i = 0; i < calButtons.length; i++) {
 
     var buttonNode = document.createElement('div');
@@ -93,7 +94,32 @@
     displayText.textContent = calButtons[i].text;
     buttonNode.appendChild(displayText);
 
+    if (calButtons[i].id !== 'displayField' && calButtons[i].id !== 'equals') {
+      buttonNode.setAttribute('class', 'inputButton');
+    } else if (calButtons[i].id === 'displayField') {
+      buttonNode.setAttribute('class', 'displayButton');
+    } else if (calButtons[i].id === 'equals') {
+      buttonNode.setAttribute('class', 'equalsButton')
+    };
+
   };
+
+  //===================Let's press some buttons:
+  var inputButtons = document.querySelectorAll('.inputButton');
+  for(var i = 0; i < inputButtons.length; i++) {
+    console.log('here');
+    inputButtons[i].addEventListener('click', getButtonValue);
+  }
+
+  var equals = document.getElementById('equals');
+  equals.addEventListener('click', getButtonValue);
+
+
+  function getButtonValue(e) {
+    console.log(e.target.textContent);
+    return e.target.textContent;
+  }
+
 
   //================================This is the calculator piece
   function calculator() {
