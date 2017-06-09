@@ -1,6 +1,101 @@
-// (function(){
-//   'use strict';
+(function(){
+  'use strict';
 
+  //================================This is the array of buttons
+  var calButtons = [
+    {
+      'id': 'clear',
+      'text': 'C'
+    },
+    {
+      'id': 'displayField',
+      'text': ''
+    },
+    {
+      'id': 'seven',
+      'text': '7'
+    },
+    {
+      'id': 'eight',
+      'text': '8'
+    },
+    {
+      'id': 'nine',
+      'text': '9'
+    },
+    {
+      'id': 'divide',
+      'text': '/'
+    },
+    {
+      'id': 'four',
+      'text': '4'
+    },
+    {
+      'id': 'five',
+      'text': '5'
+    },
+    {
+      'id': 'six',
+      'text': '6'
+    },
+    {
+      'id': 'multiply',
+      'text': 'X'
+    },
+    {
+      'id': 'one',
+      'text': '1'
+    },
+    {
+      'id': 'two',
+      'text': '2'
+    },
+    {
+      'id': 'three',
+      'text': '3'
+    },
+    {
+      'id': 'subtract',
+      'text': '-'
+    },
+    {
+      'id': 'zero',
+      'text': '0'
+    },
+    {
+      'id': 'decimal',
+      'text': '.'
+    },
+    {
+      'id': 'equals',
+      'text': '='
+    },
+    {
+      'id': 'add',
+      'text': '+'
+    }
+  ];
+
+  //================================This is the HTML-build piece
+  var siteBody = document.querySelector('body');
+  var calNode = document.createElement('section');
+  calNode.setAttribute('class', 'calculator');
+  siteBody.appendChild(calNode);
+
+  for (var i = 0; i < calButtons.length; i++) {
+
+    var buttonNode = document.createElement('div');
+    buttonNode.setAttribute('id', calButtons[i].id);
+    calNode.appendChild(buttonNode);
+
+    var displayText = document.createElement('p');
+    displayText.textContent = calButtons[i].text;
+    buttonNode.appendChild(displayText);
+
+  };
+
+  //================================This is the calculator piece
   function calculator() {
     var pickFirstNumber = function() {
       var pickOne = prompt("Please enter a number");
@@ -55,23 +150,6 @@
     console.log(result);
 
   }
+  // calculator();
 
-
-
-  // function addSomeStuff(num1, num2){
-  //   return num1, num2;
-  // }
-  //
-  // function subtractSomeStuff(num1, num2) {
-  //   return num1 - num2;
-  // }
-  //
-  // function multiplySomeStuff(num1, num2) {
-  //   return num1 * num2;
-  // }
-  //
-  // function divideSomeStuff(num1, num2){
-  //   return num1 / num2;
-  // }
-
-// }());
+}());
