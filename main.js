@@ -1,5 +1,5 @@
-(function(){
-  'use strict';
+// (function(){
+//   'use strict';
 
   //================================This is the array of buttons
   var calButtons = [
@@ -13,7 +13,10 @@
     },
     {
       'id': 'seven',
-      'text': '7'
+      'text': '7',
+      'btnValue': function(){
+        return 7;
+      }
     },
     {
       'id': 'eight',
@@ -41,7 +44,7 @@
     },
     {
       'id': 'multiply',
-      'text': 'X'
+      'text': 'x'
     },
     {
       'id': 'one',
@@ -105,77 +108,115 @@
   };
 
   //===================Let's press some buttons:
-  var inputButtons = document.querySelectorAll('.inputButton');
-  for(var i = 0; i < inputButtons.length; i++) {
-    console.log('here');
+  var inputButtons = document.querySelector('.calculator');
+  var clickedButton;
+  inputButtons.addEventListener('click', getButtonValue);
+  for (let i = 0; i <= inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', getButtonValue);
-  }
+  };
 
   var equals = document.getElementById('equals');
   equals.addEventListener('click', getButtonValue);
 
+  var display = document.getElementById('displayField');
 
   function getButtonValue(e) {
-    console.log(e.target.textContent);
-    return e.target.textContent;
+    clickedButton = e.target.textContent;
+    display.textContent = clickedButton;
+    console.log(clickedButton);
+    return clickedButton;
   }
 
 
   //================================This is the calculator piece
-  function calculator() {
+  // function calculator() {
+
+      // var pickOne = getButtonValue();
+      // pickOne = parseFloat(pickOne);
+      // console.log(pickOne);
+      // return pickOne;
+    var displayContent = display.textContent;
+    var firstNumber = '';
+    var secondNumber = '';
+    var operator = '';
+    var error = function() {
+      display.textContent = 'error';
+    // };
+
     var pickFirstNumber = function() {
-      var pickOne = prompt("Please enter a number");
-      pickOne = parseFloat(pickOne);
-      console.log(pickOne);
-      return pickOne;
+      if (displayContent === ''){
+        return;
+      }
+      firstNumber = parseFloat(display.textContent);
+      console.log(firstNumber);
+      return firstNumber;
+
+      // var pickOne = prompt("Please enter a number");
+      // pickOne = parseFloat(pickOne);
+      // console.log(pickOne);
+      // return pickOne;
     };
-    var firstNumber = pickFirstNumber();
+
+    var heyThisIsFirst = pickFirstNumber();
+    console.log(heyThisIsFirst);
 
 
     var pickOperator = function() {
-      var choice = prompt("Choose +, -, *, or /");
-
-      if (choice === '+') {
-        choice = 'ADD'
-      } else if (choice === '-') {
-        choice = 'MINUS';
-      } else if (choice === '*') {
-        choice = 'MULT';
-      } else {
-        choice = 'DIVIDE';
-      }
-      console.log(choice);
-      return choice;
-    };
-    var doThisMath = pickOperator();
+       if (displayContent !== '') {
+         operator = display.textContent;
+         console.log(operator);
+         return operator;
+       }
+       return error();
+     }
+      // var choice = prompt("Choose +, -, *, or /");
+      //
+      // if (choice === '+') {
+      //   choice = 'ADD'
+      // } else if (choice === '-') {
+      //   choice = 'MINUS';
+      // } else if (choice === '*') {
+      //   choice = 'MULT';
+      // } else {
+      //   choice = 'DIVIDE';
+      // }
+      // console.log(choice);
+      // return choice;
+    // };
+    // var doThisMath = pickOperator();
 
     var pickSecondNumber = function() {
-      var pickTwo = prompt("Please enter a number");
-      pickTwo = parseFloat(pickTwo);
-      console.log(pickTwo);
-      return pickTwo;
+      if (displayContent !== '') {
+        secondNumber = parseFloat(display.textContent);
+        console.log(secondNumber);
+        return secondNumber;
+      }
+      return error();
+      // var pickTwo = prompt("Please enter a number");
+      // pickTwo = parseFloat(pickTwo);
+      // console.log(pickTwo);
+      // return pickTwo;
     };
 
-    var secondNumber = pickSecondNumber();
-
+    // var secondNumber = pickSecondNumber();
+    //
     function calculate(num1, op, num2) {
-
-      if (op === 'ADD') {
+      if (op === '+') {
         return num1 + num2;
-      } else if (op === 'MINUS'){
+      } else if (op === '-'){
         return num1 - num2;
-      } else if (op === 'MULT') {
+      } else if (op === '*') {
         return num1 * num2;
       } else {
         return num1 / num2;
       };
-
     }
 
-    var result = calculate(firstNumber, doThisMath, secondNumber);
+    var result = calculate(firstNumber, operator, secondNumber);
     console.log(result);
-
   }
+  //
+  // }
   // calculator();
 
-}());
+// }());
