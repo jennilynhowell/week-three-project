@@ -113,25 +113,65 @@
   // inputButtons.addEventListener('click', getButtonValue);
   for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', function(event){
+
       var clickedButton = event.target.textContent;
       console.log(clickedButton);
-      var firstNumber;
-      var mathButton;
-      var secondNumber;
-      var storedButtons = [];
+
+      var firstNumber = 0;
+      var mathButton = '';
+      var secondNumber = 0;
+      var equation = '';
+      var hasOperator = false;
+
+      function resetVariables () {
+        firstNumber = '';
+        mathButton = '';
+        secondNumber = '';
+        hasFirstNumber = false;
+        hasOperator = false;
+        hasSecondNumber = false;
+        equation = '';
+      }
+
+      // function validEquation(string) {
+      //   for (let i = 0; i <= string.length; i++) {
+      //     //log digits in firstnum until I reach an operator
+      //     if () {
+      //       firstNumber += (parseFloat(string[i]));
+      //     } else if (string[i] === 'x' || string[i] === '/' || string[i] === '+' || string[i] === '-') {
+      //       mathButton = string[i];
+      //     }
+      //   };
+      // }
+
 
       if (clickedButton === 'C') {
         display.textContent = '';
-      } else if (clickedButton === '=') {
-        display.textContent += clickedButton;
-      } else if (clickedButton === '.') {
-        display.textContent += clickedButton;
-      } else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
-        display.textContent += clickedButton;
-      } else {
-        display.textContent += clickedButton;
+        resetVariables();
       }
-
+        else if (clickedButton === '=') {
+        display.textContent += clickedButton;
+        // equation.push(display.textContent);
+        // validEquation(equation);
+      }
+        else if (clickedButton === '.') {
+        display.textContent += clickedButton;
+        equation += display.textContent;
+      }
+        else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
+        display.textContent += clickedButton;
+        hasOperator = true;
+        equation += display.textContent;
+      }
+        else {
+        display.textContent += clickedButton;
+        equation += display.textContent;
+        if (!hasOperator) {
+          firstNumber = parseFloat(display.textContent);
+          console.log('firstnum: ', firstNumber);
+        }
+      }
+      console.log(equation);
     })
   };
 
