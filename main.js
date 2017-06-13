@@ -120,8 +120,8 @@
       var firstNumber = 0;
       var mathButton = '';
       var secondNumber = 0;
-      var equation = '';
       var hasOperator = false;
+      var equation = [];
 
       function resetVariables () {
         firstNumber = '';
@@ -133,17 +133,9 @@
         equation = '';
       }
 
-      // function validEquation(string) {
-      //   for (let i = 0; i <= string.length; i++) {
-      //     //log digits in firstnum until I reach an operator
-      //     if () {
-      //       firstNumber += (parseFloat(string[i]));
-      //     } else if (string[i] === 'x' || string[i] === '/' || string[i] === '+' || string[i] === '-') {
-      //       mathButton = string[i];
-      //     }
-      //   };
-      // }
+      function evaluateEquation () {
 
+      }
 
       if (clickedButton === 'C') {
         display.textContent = '';
@@ -151,28 +143,34 @@
       }
         else if (clickedButton === '=') {
         display.textContent += clickedButton;
-        // equation.push(display.textContent);
-        // validEquation(equation);
       }
         else if (clickedButton === '.') {
         display.textContent += clickedButton;
-        equation += display.textContent;
       }
         else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
-        display.textContent += clickedButton;
+        display.textContent = clickedButton;
+        mathButton = clickedButton;
+        equation[1] = mathButton;
         hasOperator = true;
-        equation += display.textContent;
+        console.log('mathbutton: ', mathButton);
+      } else {
+        display.textContent = clickedButton;
       }
-        else {
-        display.textContent += clickedButton;
-        equation += display.textContent;
-        if (!hasOperator) {
-          firstNumber = parseFloat(display.textContent);
-          console.log('firstnum: ', firstNumber);
-        }
+
+      if (!hasOperator) {
+        firstNumber = parseFloat(display.textContent);
+        equation[0] = firstNumber;
+        console.log('firstnum: ', firstNumber);
       }
+      if (firstNumber && hasOperator && (equation.length = 2)) {
+        secondNumber = parseFloat(display.textContent);
+        equation[2] = secondNumber;
+        console.log('secondnum: ', secondNumber);
+      }
+      
       console.log(equation);
     })
+
   };
 
   // var equals = document.getElementById('equals');
