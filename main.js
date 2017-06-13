@@ -109,14 +109,16 @@
   var inputButtons = document.querySelectorAll('.inputButton');
   var display = document.getElementById('displayField');
 
+
   // inputButtons.addEventListener('click', getButtonValue);
-  for (let i = 0; i <= inputButtons.length; i++) {
+  for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', function(event){
+      var clickedButton = event.target.textContent;
+      console.log(clickedButton);
       var firstNumber;
       var mathButton;
       var secondNumber;
       var storedButtons = [];
-      var clickedButton = event.target.textContent;
 
       if (clickedButton === 'C') {
         display.textContent = '';
@@ -126,7 +128,8 @@
         display.textContent += clickedButton;
       } else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
         display.textContent += clickedButton;
-        console.log(clickedButton);
+      } else {
+        display.textContent += clickedButton;
       }
 
     })
