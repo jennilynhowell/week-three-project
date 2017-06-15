@@ -6,8 +6,10 @@
 
 section {
   margin: 0 auto;
-  height: 35vh;
-  width: 30vh;
+  margin-top: 25px;
+  height: 250px;
+  width: 200px;
+  cursor: pointer;
 
   display: flex;
   align-items: flex-start;
@@ -38,6 +40,30 @@ section div {
 #add, #subtract, #multiply, #divide {
   background-color: #76C17B;
   color: #3B613B;
+}
+
+#add:hover {
+  background-color: #B3E4B7;
+}
+
+#subtract:hover {
+  background-color: #B3E4B7;
+}
+
+#multiply:hover {
+  background-color: #B3E4B7;
+}
+
+#divide:hover {
+  background-color: #B3E4B7;
+}
+
+#clear:hover {
+  background-color: #9FCA9F;
+}
+
+#equals:hover {
+  background-color: #9FCA9F;
 }
 
 div p {
