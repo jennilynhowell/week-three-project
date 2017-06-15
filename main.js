@@ -122,17 +122,17 @@
   var clickedButton = '';
 
   function add(computeArray) {
-    num1 = parseFloat(num1);
-    num2 = parseFloat(num2);
-    console.log(num1, num2);
-    return num1 + num2;
+    var num1 = parseFloat(num1);
+    var num2 = parseFloat(num2);
+    var result = num1 + num2;
+    return result;
   }
 
   function subtract(computeArray) {
     var num1 = parseFloat(computeArray[0]);
     var num2 = parseFloat(computeArray[2]);
-    console.log(num1, num2);
-    return num1 - num2;
+    var result = num1 - num2;
+    return result;
   }
 
   function multiply(computeArray) {
@@ -145,8 +145,8 @@
   function divide(computeArray){
     var num1 = parseFloat(computeArray[0]);
     var num2 = parseFloat(computeArray[2]);
-    console.log(num1, num2);
-    return num1 / num2;
+    var result = num1 / num2;
+    return result;
   }
 
   //===================Event handler function:
@@ -190,16 +190,12 @@
           console.log(result);
           display.textContent = result;
 
-        } else /*if (equationArray[i] === '/')*/ {
+        } else if (equationArray[i] === '/') {
           result = divide(equationArray);
-          console.log(equationArray);
+          console.log(result);
           display.textContent = result;
         }
 
-        // } else {
-        //   console.log("error");
-        //   display.textContent = 'error';
-        // }
       };
 
     } else {
