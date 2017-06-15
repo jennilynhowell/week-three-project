@@ -122,8 +122,8 @@
   var clickedButton = '';
 
   function add(computeArray) {
-    var num1 = parseFloat(num1);
-    var num2 = parseFloat(num2);
+    var num1 = parseFloat(computeArray[0]);
+    var num2 = parseFloat(computeArray[2]);
     var result = num1 + num2;
     return result;
   }
