@@ -110,68 +110,107 @@
   var display = document.getElementById('displayField');
 
 
-  // inputButtons.addEventListener('click', getButtonValue);
+  //===================Apply event listeners:
   for (let i = 0; i < inputButtons.length; i++) {
-    inputButtons[i].addEventListener('click', function(event){
-
-      var clickedButton = event.target.textContent;
-      console.log(clickedButton);
-
-      var firstNumber = 0;
-      var mathButton = '';
-      var secondNumber = 0;
-      var hasOperator = false;
-      var equation = [];
-
-      function resetVariables () {
-        firstNumber = '';
-        mathButton = '';
-        secondNumber = '';
-        hasFirstNumber = false;
-        hasOperator = false;
-        hasSecondNumber = false;
-        equation = '';
-      }
-
-      function evaluateEquation () {
-
-      }
-
-      if (clickedButton === 'C') {
-        display.textContent = '';
-        resetVariables();
-      }
-        else if (clickedButton === '=') {
-        display.textContent += clickedButton;
-      }
-        else if (clickedButton === '.') {
-        display.textContent += clickedButton;
-      }
-        else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
-        display.textContent = clickedButton;
-        mathButton = clickedButton;
-        equation[1] = mathButton;
-        hasOperator = true;
-        console.log('mathbutton: ', mathButton);
-      } else {
-        display.textContent = clickedButton;
-      }
-
-      if (!hasOperator) {
-        firstNumber = parseFloat(display.textContent);
-        equation[0] = firstNumber;
-        console.log('firstnum: ', firstNumber);
-      }
-      if (firstNumber && hasOperator && (equation.length = 2)) {
-        secondNumber = parseFloat(display.textContent);
-        equation[2] = secondNumber;
-        console.log('secondnum: ', secondNumber);
-      }
-      
-      console.log(equation);
-    })
-
+    inputButtons[i].addEventListener('click', mathFunction);
   };
+
+  //===================Some variables & functions for your calculating enjoyment:
+  var result = 0;
+  var equation = '';
+  var equationArray = [];
+  var clickedButton = '';
+
+  function add(computeArray) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    console.log(num1, num2);
+    return num1 + num2;
+  }
+
+  function subtract(computeArray) {
+    var num1 = parseFloat(computeArray[0]);
+    var num2 = parseFloat(computeArray[2]);
+    console.log(num1, num2);
+    return num1 - num2;
+  }
+
+  function multiply(computeArray) {
+    var num1 = parseFloat(computeArray[0]);
+    var num2 = parseFloat(computeArray[2]);
+    var result = num1 * num2;
+    return result;
+  }
+
+  function divide(computeArray){
+    var num1 = parseFloat(computeArray[0]);
+    var num2 = parseFloat(computeArray[2]);
+    console.log(num1, num2);
+    return num1 / num2;
+  }
+
+  //===================Event handler function:
+  function mathFunction(event) {
+    clickedButton = event.target.textContent;
+
+    if (clickedButton === 'C') {
+      display.textContent = '';
+
+    }
+      else if (clickedButton === '.') {
+      display.textContent += clickedButton;
+
+    }
+      else if (clickedButton === 'x' || clickedButton === '/' || clickedButton === '+' || clickedButton === '-') {
+      display.textContent += ' ' + clickedButton + ' ';
+
+    }
+      else if (clickedButton === '=') {
+      //eval the equation and run appropriate fn based on operator
+      equation = display.textContent;
+      console.log('before split: ', equation);
+      equationArray = equation.split(' ');
+      console.log('equation: ', equationArray);
+
+
+      for (let i = 0; i < equationArray.length; i++) {
+
+        if (equationArray[i] === '+') {
+          result = add(equationArray);
+          console.log(result);
+          display.textContent = result;
+
+        } else if (equationArray[i] === '-') {
+          result = subtract(equationArray);
+          console.log(result);
+          display.textContent = result;
+
+        } else if (equationArray[i] === 'x') {
+          result = multiply(equationArray);
+          console.log(result);
+          display.textContent = result;
+
+        } else /*if (equationArray[i] === '/')*/ {
+          result = divide(equationArray);
+          console.log(equationArray);
+          display.textContent = result;
+        }
+
+        // } else {
+        //   console.log("error");
+        //   display.textContent = 'error';
+        // }
+      };
+
+    } else {
+      display.textContent += clickedButton;
+      console.log('before equals:', display.textContent);
+
+    }
+
+    return result;
+  }
+
 
   // var equals = document.getElementById('equals');
   // equals.addEventListener('click', getButtonValue);
